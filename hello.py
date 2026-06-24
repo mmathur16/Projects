@@ -1,5 +1,12 @@
 import streamlit as st
-import os
+import pandas as pd
+from pathlib import Path
 
-st.write("Current folder:", os.getcwd())
-st.write("Files here:", os.listdir())
+csv_path = Path(__file__).parent / "All Data Main Trans (1).csv"
+
+st.write("Looking for:", csv_path)
+st.write("Exists:", csv_path.exists())
+
+df = pd.read_csv(csv_path, low_memory=False)
+
+st.dataframe(df)
